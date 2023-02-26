@@ -10,6 +10,7 @@ async function main() {
   const client = new MongoClient(uri);
 
    try {
+        //This is done after the function was solved (await)
         // Connect to the MongoDB cluster
         await client.connect();
  
