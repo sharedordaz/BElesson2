@@ -1,9 +1,6 @@
 const { MongoClient } = require('mongodb');
 
-async function dbConnect() {
- 
-  const uri = "mongodb+srv://sharedordaz:sharedverde1@cluster0.nzpdodr.mongodb.net/?retryWrites=true&w=majority";
-
+async function dbConnect(uri) {
    try {
       const mongoclient = new MongoClient(uri);
       console.log('Conecting to a new Mongo Client instance');
@@ -22,10 +19,11 @@ async function dbConnect() {
 //dbConnect();
 
 async function executeCRUDquery(){
+  const uri = process.env.DB_URI;
   let mongoclient;
 
   try{
-    mongoclient = await dbConnect();
+    mongoclient = await dbConnect(uri);
   } finally{
     await mongoclient.close();
     console.log('Query finished');
