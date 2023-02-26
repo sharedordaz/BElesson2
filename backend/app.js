@@ -1,5 +1,5 @@
 //import { executeCRUDquery } from "./db/connect.js";
-const executeCRUDquery = require('./db/connect.js').executeCRUDquery;
+
 //express
 const express = require('express');
 const app = express();
@@ -8,11 +8,16 @@ const port = process.env.PORT || 8080;
 
 const dotenv = require("dotenv");
 
+const connect = require('./db/connect.js');
+
+
 dotenv.config();
-console.log("DB URI: " + process.env.DB_URI);
+const URI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.nzpdodr.mongodb.net/?retryWrites=true&w=majority`;
+
+console.log("DB URI: " + URI);
 console.log("USER: " + process.env.DB_USERNAME );
 
-//executeCRUDquery();
+connect.executeCRUDquery();
 
 app.get('/', (req, res) => {
   res.send('Sending GET solicitude');

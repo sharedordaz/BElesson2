@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb');
 
-async function dbConnect(uri) {
+const dbConnect = async (uri) => {
    try {
       const mongoclient = new MongoClient(uri);
       console.log('Conecting to a new Mongo Client instance');
@@ -16,9 +16,8 @@ async function dbConnect(uri) {
     } 
 }
 
-//dbConnect();
 
-async function executeCRUDquery(){
+const executeCRUDquery = async () => {
   const uri = process.env.DB_URI;
   let mongoclient;
 
@@ -31,3 +30,8 @@ async function executeCRUDquery(){
 }
 
 //executeCRUDquery();
+
+module.exports = {
+  dbConnect,
+  executeCRUDquery,
+};
