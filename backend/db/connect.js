@@ -1,34 +1,22 @@
-const {MongoClient} = require('mongodb');
+const { MongoClient } = require('mongodb');
 
-async function main() {
-  /**
-  * Connection URI. Update <username>, <password>, and <your-cluster-url> to reflect your cluster.
-  * See https://docs.mongodb.com/ecosystem/drivers/node/ for more details
-  */
+async function dbConnect() {
+ 
   const uri = "mongodb+srv://sharedordaz:sharedverde1@cluster0.nzpdodr.mongodb.net/?retryWrites=true&w=majority";
 
-  const client = new MongoClient(uri);
-
    try {
-        //This is done after the function was solved (await)
-        // Connect to the MongoDB cluster
-        await client.connect();
- 
-        // Make the appropriate DB calls
-        await  listDatabases(client);
- 
+      const mongoclient = new MongoClient(uri);
+      console.log('Conecting to a new Mongo Client instance');
+      //This is done after the function was solved (await)
+      // Connect to the MongoDB cluster
+      await mongoclient.connect();
+      console.log("Succesfully connected to Mongo DB!");
+      return mongoclient;
+
     } catch (e) {
-        console.error(e);
-    } finally {
-        await client.close();
-    }
+        console.error("Connection to Mongo DB failed", e);
+        process.exit();
+    } 
 }
 
-async function listDatabases(client){
-    databasesList = await client.db().admin().listDatabases();
- 
-    console.log("Databases:");
-    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
-};
-
-main().catch(console.error);
+//dbConnect();
