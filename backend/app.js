@@ -1,4 +1,4 @@
-import { dbConnect } from "./db/connect.js";
+import { executeCRUDquery } from "./db/connect.js";
 
 //express
 const express = require('express');

@@ -20,3 +20,16 @@ async function dbConnect() {
 }
 
 //dbConnect();
+
+async function executeCRUDquery(){
+  let mongoclient;
+
+  try{
+    mongoclient = await dbConnect();
+  } finally{
+    await mongoclient.close();
+    console.log('Query finished');
+  }
+}
+
+//executeCRUDquery();
