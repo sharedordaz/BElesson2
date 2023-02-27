@@ -26,6 +26,8 @@ const getAllContacts = async (req, res, next) => {
 }
 
 const getSingle = async (req, res, next) => {
+    const uri = process.env.DB_URI;
+    let mongoclient;
   const userId = new ObjectId(req.params.id);
   mongoclient = await connection.dbConnect(uri);
   result = await mongoclient.db("backend2").collection('contacts').find({ _id : userId });
