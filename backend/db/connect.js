@@ -23,9 +23,17 @@ const executeCRUDquery = async () => {
 
   try{
     mongoclient = await dbConnect(uri);
-  } finally{
-    await mongoclient.close();
-    console.log('Query finished');
+    dbo = mongoclient.db("backend2");
+    contactsCOL =  dbo.collection('contacts');
+    result = await contactsCOL.find({});
+    resultArray = result.toArray().then( (lists) =>{
+    console.log('Contacts retreived Data example: \nFirstName: ' + lists[0]["firstName"]);});
+    }
+  catch (e){
+      console.log("Funny error" + e )
+  }
+   finally{
+     setTimeout(() => {mongoclient.close()}, 1500)
   }
 }
 
