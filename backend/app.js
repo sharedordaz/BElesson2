@@ -9,6 +9,7 @@ const dotenv = require("dotenv");
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const mongodb = require('./db/connect');
 const connect = require('./controllers/clients.js');
 
 const contactsRouter = require('./routes/contacts.js');
@@ -22,31 +23,21 @@ const URI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}
 //console.log("DB URI: " + URI);
 //console.log("USER: " + process.env.DB_USERNAME );
 
-connect.getAllContacts();
+//connect.getAllContacts();
+
+
+
+//bodyParser
+app
+.use(bodyParser.json())
+.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', "*");
+  next();
+})
+.use("/contact", contactsRouter);
 
 
 app.use("/", homeRouter);
-app.use("/contact", contactsRouter);
-
-let contacts = [];
-
-app.use(cors());
-//bodyParser
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-app.post('/contact', (req, res) => {
-    const contact = req.body;
-
-    // Output the book to the console for debugging
-    console.log(contact);
-    contacts.push(contact);
-
-    res.send(`Contact: ${contact} is added to the database`);
-});
-
-
-
 //Submit all app.use routers
 app.listen(port, ()=>{
   console.log(`Server running at port ${port}`);

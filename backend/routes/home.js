@@ -4,8 +4,7 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-  res.send('<h1>Home route is displaying data</h1>');
-})
+  res.send('<h1>Welcome to contacts!</h1><br> ');})
 
 module.exports = router;
 

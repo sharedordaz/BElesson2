@@ -1,16 +1,15 @@
 const express = require('express');
 
+const controller = require("../controllers/clients.js")
+
 const router = express.Router();
 
 
-router.get('/', (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.status(200).json();
-})
+router.get ('/' , controller.getAllContacts);
 
-/*app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);}
-)*/
+
+router.get (`/:id` , controller.getSingle);
+
 
 module.exports = router;
 
