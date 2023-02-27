@@ -4,7 +4,8 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-  res.send('Contact route is displaying data');
+  res.setHeader('Content-Type', 'application/json');
+  res.status(200).json();
 })
 
 /*app.listen(port, () => {

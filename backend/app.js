@@ -9,10 +9,10 @@ const dotenv = require("dotenv");
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const connect = require('./db/connect.js');
+const connect = require('./controllers/clients.js');
 
-const contactsRoute = require('./routes/contacts.js');
-const homeRoute = require('./routes/home.js');
+const contactsRouter = require('./routes/contacts.js');
+const homeRouter = require('./routes/home.js');
 
 
 
@@ -22,11 +22,11 @@ const URI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}
 //console.log("DB URI: " + URI);
 //console.log("USER: " + process.env.DB_USERNAME );
 
-connect.executeCRUDquery();
+connect.getAllContacts();
 
 
-app.use("/", homeRoute);
-app.use("/contact", contactsRoute);
+app.use("/", homeRouter);
+app.use("/contact", contactsRouter);
 
 let contacts = [];
 
