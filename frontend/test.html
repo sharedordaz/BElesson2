@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>REQUESTS MANAGER</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./style.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Requests Manager</h1>
+    <form action="../backend/routes/home.js" method="post">
+      <label for="POSTreq">POST REQUEST: </label> <input type="text" name="POSTreq" id="POSTreq"><br>
+      <input type="submit" value="POST">
+    </form>
+
+    <hr>
+    <form action="../backend/routes/home.js" method="post">
+      <input type="hidden" name="_method" value="put" />
+      <label for="PUTreq">PUT REQUEST: </label> <input type="text" name="PUTreq" id="PUTreq"><br>
+      <input type="submit" value="PUT">
+    </form>   
+    <hr>
+    <form action="../backend/routes/home.js" method="delete">
+      <input type="hidden" name="_method" value="delete" />
+      <label for="DELETEreq">DELETE REQUEST: </label> <input type="text" name="DELETEreq" id="DELETEreq"><br>
+      <input type="submit" value="DELETE">
+    </form>
+</body>
+</html>
