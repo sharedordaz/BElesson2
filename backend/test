@@ -1,0 +1,7 @@
+POST
+
+{ "firstName" : `Michael`, 
+  "lastName" : `Faraday`,
+  "email" : `electric@dude.com`,
+  "favoriteColor" : `blue`,
+  "birthday" : `27/05`};

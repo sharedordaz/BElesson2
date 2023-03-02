@@ -4,13 +4,9 @@ const controller = require("../controllers/clients.js")
 
 const router = express.Router();
 
-
-router.get ('/' , controller.getAllContacts);
-
-
-router.get (`/:id` , controller.getSingle);
-
-
+//Undefined routes
+router.get('*', function (req,res) {
+  res.send('Undefined route')
+})
 
 module.exports = router;
-

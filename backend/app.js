@@ -1,35 +1,38 @@
 //express
 const express = require('express');
-const app = express();
-///////Process.env.PORT means whatever port the hosting service (heroku, render) is using
 const port = process.env.PORT || 8080;
-
-const dotenv = require("dotenv");
+const app = express();
 
 const bodyParser = require('body-parser');
-const cors = require('cors');
+
+const contactsRouter = require('./routes/contacts.js');
+const homeRouter = require('./routes/home.js');
+const defaultRouter = require('./routes/default.js');
+
+
 
 const mongodb = require('./db/connect');
 const connect = require('./controllers/clients.js');
 
-const contactsRouter = require('./routes/contacts.js');
-const homeRouter = require('./routes/home.js');
 
 
-
-dotenv.config();
 const URI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.nzpdodr.mongodb.net/?retryWrites=true&w=majority`;
 
-//console.log("DB URI: " + URI);
-//console.log("USER: " + process.env.DB_USERNAME );
+///////Process.env.PORT means whatever port the hosting service (heroku, render) is using
 
-//connect.getAllContacts();
-
-
-
-//bodyParser
+//app.use(express.text());
+//app.use(express.json());
+app.use(bodyParser.json())
 app
 .use(bodyParser.json())
+.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', "*");
+  next();
+})
+.use("/", require('./routes/home.js'));
+
+
+app.use(bodyParser.json())
 .use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', "*");
   next();
@@ -37,9 +40,11 @@ app
 .use("/contact", contactsRouter);
 
 
-app.use("/", homeRouter);
+app.use("/", defaultRouter);
+
 //Submit all app.use routers
 app.listen(port, ()=>{
   console.log(`Server running at port ${port}`);
 })
+
 
