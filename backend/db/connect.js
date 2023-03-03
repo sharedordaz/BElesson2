@@ -1,25 +1,33 @@
-const { MongoClient } = require('mongodb');
+const dotenv = require('dotenv');
+dotenv.config();
+const MongoClient = require('mongodb').MongoClient;
 
-const dbConnect = async (uri) => {
-   try {
-      const mongoclient = new MongoClient(uri);
-      console.log('Conecting to a new Mongo Client instance');
-      //This is done after the function was solved (await)
-      // Connect to the MongoDB cluster
-      await mongoclient.connect();
-      console.log("Succesfully connected to Mongo DB!");
-      return mongoclient;
+let _db;
 
-    } catch (e) {
-        console.error("Connection to Mongo DB failed", e);
-        process.exit();
-    } 
-}
+const initDb = (callback) => {
+  if (_db) {
+    console.log('Db is already initialized!');
+    return callback(null, _db);
+  }
+  const uri = process.env.DB_URI;
+  MongoClient.connect(uri)
+    .then((client) => {
+      _db = client;
+      callback(null, _db);
+    })
+    .catch((err) => {
+      callback(err);
+    });
+};
 
-
-
-//executeCRUDquery();
+const getDb = () => {
+  if (!_db) {
+    throw Error('Db not initialized');
+  }
+  return _db;
+};
 
 module.exports = {
-  dbConnect
+  initDb,
+  getDb
 };
