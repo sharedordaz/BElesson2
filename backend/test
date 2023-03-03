@@ -1,5 +1,6 @@
 https://lesson2-backend2-sharedordaz.onrender.com/
 
+POST AND PUT header: 'Content-Type' 'application/json'
 POST
 { "firstName" : "Michael", 
   "lastName" : "Faraday",
@@ -24,8 +25,8 @@ or
   "birthday" : "09/08"}
 
 
-
-DELETE https://lesson2-backend2-sharedordaz.onrender.com/6401a31fa696fa88b595d3a9
+DELETE: No header
+DELETE https://lesson2-backend2-sharedordaz.onrender.com/6401ab697ba2126e15d33d8a
 
 
 
