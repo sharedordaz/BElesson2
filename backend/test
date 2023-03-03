@@ -1,11 +1,32 @@
+https://lesson2-backend2-sharedordaz.onrender.com/
+
 POST
-{ "firstName" : `Michael`, 
-  "lastName" : `Faraday`,
-  "email" : `electric@dude.com`,
-  "favoriteColor" : `blue`,
-  "birthday" : `27/05`}
+{ "firstName" : "Michael", 
+  "lastName" : "Faraday",
+  "email" : "electric@dude.com",
+  "favoriteColor" : "blue",
+  "birthday" : "27/05"}
 
-{
-    "firstName":"Ashley", "lastName":"Weaver", "email":"aWeaver@test.com", "favoriteColor":"Brown", "birthday":"06/19/2000"
+PUT
+https://lesson2-backend2-sharedordaz.onrender.com/64019691b4803e65743c3a1b
+{ "firstName" : "Linus", 
+  "lastName" : "Torvalds",
+  "email" : "tuxlover@linux.com",
+  "favoriteColor" : "black",
+  "birthday" : "28/09"} 
 
-}
+or 
+
+{ "firstName" : "Richard", 
+  "lastName" : "Stallman",
+  "email" : "GNUlover@linux.com",
+  "favoriteColor" : "white",
+  "birthday" : "09/08"}
+
+
+
+DELETE https://lesson2-backend2-sharedordaz.onrender.com/6401a31fa696fa88b595d3a9
+
+
+
+

@@ -55,13 +55,39 @@ const createNew = async (req, res) =>{
 }
 
 const updateCont = async (req, res, next) =>{
-  res.send("PUT from function is working");
+  //res.send("PUT from function is working");
+  const userId = new ObjectId(req.params.id);
+  // be aware of updateOne if you only want to update specific fields
+  const contact = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    favoriteColor: req.body.favoriteColor,
+    birthday: req.body.birthday
+  };
+
+  const contactsCOL = mongoclient.getDb().db("backend2").collection("contacts");
+  const result = await contactsCOL.replaceOne( {_id: userId }, contact);
+    if (result.modifiedCount > 0) {
+    res.status(204).send("PUT request successful");
+  } else {
+    res.status(500).json(result.error || 'Some error occurred while updating the contact.');
+  }
 }
 const delCont = async (req, res, next) =>{
-  res.send("DELETE from function is working");
+  const userId = new ObjectId(req.params.id);
+  
+  const contactsCOL = mongoclient.getDb().db("backend2").collection("contacts");
+  const result = await contactsCOL.deleteOne({ _id: userId }, true);
+
+  if (result.deletedCount > 0) {
+    res.status(204).send("DELETE request sucessful");
+  } else {
+    res.status(500).json(result.error || 'Some error occurred while deleting the contact.');
+  }
+};
 
 
-}
 
 module.exports = {
   getAllContacts,
