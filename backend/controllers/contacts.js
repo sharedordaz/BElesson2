@@ -20,15 +20,19 @@ const getAllContacts = async (req, res, next) => {
 
 const getSingle = async (req, res, next) => {
   //get GET userId (from URL) req.params = $_GET in PHP
-  const userId = new ObjectId(req.params.id);
-
+ 
   //Connect to mongodb
-  result = await mongoclient.getDb().db("backend2").collection('contacts').find({ _id : userId });
-  result.toArray().then( (lists) =>{
+  try {
+    const userId = new ObjectId(req.params.id);
+    result = mongoclient.getDb().db("backend2").collection('contacts').find({ _id : userId })
+    result.toArray().then( (lists) =>{
     console.log('Single Contact Data example: \nId: ' + lists[0]);
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists[0]);
-  })
+  })    
+  } catch (error) {
+    res.status(404).send("<p>Couldn't access to database!\n <hr>Error: </p>\t" + error);
+  }
 }
 
 const createNew = async (req, res) =>{
