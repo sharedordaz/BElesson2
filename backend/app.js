@@ -23,10 +23,10 @@ app
   res.setHeader('Access-Control-Allow-Origin', '*');
   next();
 })
-.use('/', require('./routes/contacts.js'));
+.use('/contacts', require('./routes/contacts.js'));
 
 
-/*app.use(bodyParser.json())
+app.use(bodyParser.json())
 app
 .use(bodyParser.json())
 .use((req, res, next) => {
@@ -36,7 +36,7 @@ app
 .use("/", require('./routes/home.js'));
 
 
-app.use("/", require('./routes/default.js'));*/
+app.use("/", require('./routes/default.js'));
 
 mongodb.initDb((err) => {
   if (err) {
