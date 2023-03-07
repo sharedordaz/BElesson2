@@ -17,14 +17,6 @@ const URI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}
 
 
 //ADMIN MIDDLEWARES FOR ROUTERS
-app
-.use(bodyParser.json())
-.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  next();
-})
-.use('/contacts', require('./routes/contacts.js'));
-
 
 app.use(bodyParser.json())
 app
@@ -34,6 +26,16 @@ app
   next();
 })
 .use("/", require('./routes/home.js'));
+
+app.use('/api-docs', require('./routes/swaggerEndPoint.js'));
+
+app
+.use(bodyParser.json())
+.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+})
+.use('/contacts', require('./routes/contacts.js'));
 
 
 app.use("/", require('./routes/default.js'));

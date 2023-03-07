@@ -1,0 +1,30 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Contacts API ",
+    "description": "A contacts manager made in Node Js",
+    "version": "1.0.0"
+  },
+  "host": "lesson2-backend2-sharedordaz.onrender.com",
+  "basePath": "/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    }
+  },
+  "licence": {
+    "name": "GPL3",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+  }
+}
