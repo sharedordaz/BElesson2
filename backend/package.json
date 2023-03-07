@@ -1,25 +1,24 @@
 {
-  "name": "lesson2",
+  "name": "ContactsAPI",
   "version": "1.0.0",
-  "description": "lesson two",
-  "main": "index.js",
+  "description": "",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
+    "start": "nodemon server.js",
     "swagger": "node ./swagger.js"
   },
-  "author": "sharedordaz",
-  "license": "ISC",
+  "author": "Shared Israel Ordaz Santillan",
+  "license": "GPL3",
   "dependencies": {
-    "body-parser": "^1.20.2",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "latest-version": "^7.0.0",
-    "mongodb": "^5.1.0",
-    "nodemon": "^2.0.20",
-    "swagger-autogen": "^2.23.1",
-    "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^4.6.2"
+    "nodemon": "^1.18.4",
+    "body-parser": "^1.18.3",
+    "dotenv": "^16.0.0",
+    "express": "^4.16.3",
+    "mongodb": "^4.4.0",
+    "swagger-ui-express": "^4.3.0"
+  },
+  "devDependencies": {
+    "swagger-autogen": "^2.19.0"
   }
 }

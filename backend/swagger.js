@@ -1,7 +1,5 @@
 const swaggerAutogen = require('swagger-autogen')();
 
-
-//Metadata
 const doc = {
   info: {
     title: 'Contacts API ',
@@ -17,10 +15,9 @@ const doc = {
   }
 };
 
+
 const outputFile = './swagger.json';
-const endpointsFiles = ['./routes/swaggerEndPoint.js',];
+const endpointsFiles = ['./routes/index.js'];
 
+swaggerAutogen(outputFile, endpointsFiles, doc);
 
-swaggerAutogen(outputFile, endpointsFiles, doc).then( () =>{
-  require('./app.js')
-});
